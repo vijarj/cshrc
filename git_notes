@@ -1,0 +1,6 @@
+To clone:
+git clone https://github.com/vijarj/cshrc.git
+ln -s ~/github/cshrc/alias.cshrc
+ln -s ~/github/cshrc/vimrc
+
+
