@@ -4,14 +4,6 @@ set autolist
 set autocorrect
 set autoexpand
 set filec
-##from T Q
-set autologout=0
-set history = 5000
-set ignoreeof
-#set noclobber 
-set notify
-set savehist = 500
-
 #set noding
 set     red="%{\033[1;31m%}"
 set   green="%{\033[0;32m%}"
