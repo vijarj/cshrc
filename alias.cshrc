@@ -20,13 +20,13 @@ unset red green yellow blue magenta cyan yellow white end
 unalias vim
 # Aliases
 alias a alias
-a sdd       'setenv DESIGN $PWD; setenv DMWA $PWD; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech; source ~vjsk/alias.cshrc' 
+a sdd       'setenv DESIGN $PWD; setenv DMWA $PWD; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech' 
 a URs 'echo "\-U\n\-R\n\-s" | xargs -n 1 -Iopts pm workspace opts `basename $PWD` | grep -v -e "up\-to\-date"'
 a c         clear
-a l         "ls"
-a ll        'ls -ltrh' 
-a lls       'ls -lSrhA' 
-a llr       'ls -ltrhA' 
+a l         "ls --color"
+a ll        'ls -ltrh --color' 
+a lls       'ls -lSrhA --color' 
+a llr       'ls -ltrhA --color' 
 a u1        'cd ../'
 a u         'cd ../'
 a u2        'cd ../../'
@@ -42,7 +42,7 @@ a uuuuuu     "cd ../../../../../.."
 a which     '/usr/bin/which'
 a gmi       'gmake install'
 a gmr       'gmake rebuild'
-a bvir      'bsub -I virtuoso &'
+a bvir      'bsub -I -R "osrel==70&&ui=virtuoso" virtuoso &'
 a svir      'env SPSN_PROCESS=cu80f virtuoso &'
 a nxplayer  '/usr/NX/bin/nxplayer'
 a bicfb     'bsub -I icfb &'
@@ -89,8 +89,9 @@ alias xdrclog 'xdrc -r &; tail -f *.log'
 alias lc_eval 'setenv LM_LICENSE_FILE /proj/lic_vault/golden/lic_vault/snpslmd-aus-eval-wan/license.dat'
 alias lc_ifx 'setenv LM_LICENSE_FILE /proj/lic_vault/golden/lic_vault/snpslmd-ap-cwan_ifx/license.dat'
 
+setenv P4USER vjsk
 #Perl NCX
-setenv PERL5LIB "/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/lib/5.8.3/x86_64-linux:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/lib/5.8.3:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl/5.8.3/x86_64-linux:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl/5.8.3:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl:."
+#setenv PERL5LIB "/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/lib/5.8.3/x86_64-linux:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/lib/5.8.3:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl/5.8.3/x86_64-linux:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl/5.8.3:/tools/apps/synopsys/ncx_vC-2009.06-SP3/ccsn/amd64/perl/site_perl:."
 
 #icmp4 aliases
 alias iadd 'icmp4 add'
@@ -114,7 +115,7 @@ alias cdscripts 'cd /proj/gpfs/vjsk/myscripts'
 alias gpfs 'cd /proj/gpfs/vjsk'
 
 #ENV variables -To display directories in color
-setenv LS_COLORS "di=34:fi=00"
+setenv LS_COLORS "di=103;34:fi=00"
 
 
 #mail
@@ -144,29 +145,31 @@ alias x11 'x11vnc -loop -passwd vijay123'
 alias v 'vim -c "source ~/vimrc"'
 alias vlog '/tools/apps/local/mentor/questasim_10.4c_6/questasim/bin/vlog'
 
-if (! $?DESIGN) then
-	echo "Note: DESIGN Variable is undefined"
-else
-   if ("$DESIGN" == "") then
-	echo "Note: DESIGN Variable is empty"
-   else
-        echo "DESIGN Variable is set to $DESIGN"
-        set workspace = `basename $DESIGN`
-	set split= ( $workspace:as/_/ / )  #split gets the ddc name
-	alias cdrhview 'cd $DESIGN/$split[2]/rhview/$split[2]/apl'
-	alias cdoa 'cd $DESIGN/$split[2]/oa/$split[2]'
-	alias cdhdl 'cd $DESIGN/$split[2]/hdl/$split[2]'
-	alias cdatpg 'cd $DESIGN/$split[2]/atpg/$split[2]'
-	alias cdpnr 'cd $DESIGN/$split[2]/pnr/$split[2]'
-	alias cdsyn 'cd $DESIGN/$split[2]/syn/$split[2]'
-	alias cdv 'cd $DESIGN/$split[2]/v/$split[2]'
-	alias cdchar 'cd $DESIGN/$split[2]/char/$split[2]'
-	alias cddoc 'cd $DESIGN/$split[2]/doc/'
-   endif
-endif
+#if (! $?DESIGN) then
+#	echo "Note: DESIGN Variable is undefined"
+#else
+#   if ("$DESIGN" == "") then
+#	echo "Note: DESIGN Variable is empty"
+#   else
+#        echo "DESIGN Variable is set to $DESIGN"
+#        set workspace = `basename $DESIGN`
+#	set split= ( $workspace:as/_/ / )  #split gets the ddc name
+#	alias cdrhview 'cd $DESIGN/$split[2]/rhview/$split[2]/apl'
+#	alias cdoa 'cd $DESIGN/$split[2]/oa/$split[2]'
+#	alias cdhdl 'cd $DESIGN/$split[2]/hdl/$split[2]'
+#	alias cdatpg 'cd $DESIGN/$split[2]/atpg/$split[2]'
+#	alias cdpnr 'cd $DESIGN/$split[2]/pnr/$split[2]'
+#	alias cdsyn 'cd $DESIGN/$split[2]/syn/$split[2]'
+#	alias cdv 'cd $DESIGN/$split[2]/v/$split[2]'
+#	alias cdchar 'cd $DESIGN/$split[2]/char/$split[2]'
+#	alias cddoc 'cd $DESIGN/$split[2]/doc/'
+#   endif
+#endif
 
 #WorkArea Design Aliaases
 alias cdlvl 'cd /proj/gpfs/frame_tc/FRAMES/frame_tc_s8frames_dev_282/8c40010ab_frame/v/e15987z/lvl/tmp'
+alias cdtemp 'pushd .; cd $IFXCY_TEMP_PATH'
+alias cduserdir 'cd /opt/userdir/sureshkumar'
 
 #Paths - Because I don't have to source .cshrc everytime which changes $DESIGN
 set path = ( ${path} ~/bin ~/scripts )
