@@ -26,7 +26,7 @@ syntax enable
 colorscheme ron  " ibm green screen
 "colorscheme shine " white background grey fg
 "colorscheme zellner " white background red text
-
+set guifont=Monospace\ 11
 
 autocmd BufNewFile,BufRead *.v,*.vs,*.sv,*.svh set syntax=verilog
 
@@ -76,5 +76,6 @@ endfunction
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
+set tabstop=2 shiftwidth=2
 set expandtab
-set tabstop=2
+
