@@ -1,0 +1,10 @@
+
+git add <filename>
+(or) git add . [Will add all new files in folder]
+git commit -m "Comment"
+
+git push origin main
+(or)
+git push origin HEAD:main
+
+For password: Got to git_notes and look up all_purpose_key
