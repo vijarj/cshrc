@@ -20,10 +20,13 @@ unset red green yellow blue magenta cyan yellow white end
 unalias vim
 # Aliases
 alias a alias
-a sdd       'setenv DESIGN $PWD; setenv DMWA $PWD; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech' 
+a sdd       'setenv DESIGN $PWD; setenv DMWA $PWD;source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech' 
+a vdd       'setenv VMS_DDC_TOP $PWD; setenv VDDC $PWD'
 a URs 'echo "\-U\n\-R\n\-s" | xargs -n 1 -Iopts pm workspace opts `basename $PWD` | grep -v -e "up\-to\-date"'
 a c         clear
 a l         "ls --color"
+a l.        "ls -d .* --color=auto"
+a ll.       "ll -d .* --color=auto"
 a ll        'ls -ltrh --color' 
 a lls       'ls -lSrhA --color' 
 a llr       'ls -ltrhA --color' 
@@ -48,7 +51,9 @@ a nxplayer  '/usr/NX/bin/nxplayer'
 a bicfb     'bsub -I icfb &'
 a tff       'tail -f *log'
 a cdd       'cd $DESIGN'
-a cdmwa      'cd $DMWA'
+a cdmwa     'cd $DMWA'
+a cvdd      'cd $VDDC_DIR'
+a cvddc     'cd $VDDC_DIR/../$VDDC_NAME_FORTEMP/tb/fnv/run'
 a s	    'source ~/.cshrc'
 a sspansion 'source /tools/stabflow/spansion/cshrc.spansion'
 a edd	    'echo $DESIGN'
@@ -57,16 +62,17 @@ a h         'history'
 a gcshrc    'gvim -c "source ~/vimrc" ~/.cshrc'
 a guserenv    'gvim ~/.userenv'
 a cshrc     'vim ~/.cshrc'
-a gvimrc    'gvim ~/.vimrc'
-a vimrc     'vim ~/.vimrc'
+a gvimrc    'gvim ~/vimrc'
+a vimrc     'vim ~/vimrc'
 a galias    'gvim -c "source ~/vimrc" ~/alias.cshrc'
 a e	    'exit'
-a gvid    'gvim -c "source ~vjsk/.vimrc" ~vjsk/.DESIGN.vjsk'
-a svid    'source ~vjsk/.DESIGN.vjsk'
+a gvid    'gvim -c "source ~/vimrc" ~/.DESIGN.vjsk'
+a svid    'source ~/.DESIGN.vjsk'
 a wwe     'wwe_icm_workspace -a --show-all'
 a du	  'du -sh --apparent-size'
 a duc	  'du -shc --apparent-size'
 a cpuinfo 'cat /proc/cpuinfo'
+a sv 'bsub -Ip simvision -64 &'
 # Work Area Aliases
 alias sui 'su iptguser'
 alias suf 'su frame_tc'
@@ -132,18 +138,19 @@ alias chri 'chmod -R 777 '
 alias chx 'chmod +x '
 
 #PCIOS setup alias
-alias  ss40       'setenv DESIGN "/proj/gpfs/iptguser/WA/iptguser_scl40_dev_8132"; setenv DMWA "/proj/gpfs/iptguser/WA/iptguser_scl40_dev_8132"; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech; source ~vjsk/alias.cshrc' 
-alias  smb45       'setenv DESIGN "/proj/gpfs/vjsk/IP/vjsk_scf45hv_dev_57"; setenv DMWA "/proj/gpfs/vjsk/IP/vjsk_scf45hv_dev_57"; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech; source ~vjsk/alias.cshrc' 
+alias  ss40       'setenv DESIGN "/proj/gpfs/iptguser/WA/iptguser_scl40_dev_8132"; setenv DMWA "/proj/gpfs/iptguser/WA/iptguser_scl40_dev_8132"; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech; source ~/alias.cshrc' 
+alias  smb45       'setenv DESIGN "/proj/gpfs/vjsk/IP/vjsk_scf45hv_dev_57"; setenv DMWA "/proj/gpfs/vjsk/IP/vjsk_scf45hv_dev_57"; source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech; source ~/alias.cshrc' 
 
 
 #Software aliases
 alias abstract 'bsub -I -R "select[type==X86_64&&os==centos6]" abstract -64 &'
-#alias gvim 'gvim -c "source ~vjsk/.vimrc"'
+#alias gvim 'gvim -c "source ~/.vimrc"'
 alias g 'gvim -c "source ~/vimrc"'
 alias x11 'x11vnc -loop -passwd vijay123'
 #alias g 'gvim'
 alias v 'vim -c "source ~/vimrc"'
 alias vlog '/tools/apps/local/mentor/questasim_10.4c_6/questasim/bin/vlog'
+alias p4v 'bsub -R "(osrel=80 || osrel=70) && ui=perforce_gui" /opt/perforce/p4v/latest/bin/p4v'
 
 #if (! $?DESIGN) then
 #	echo "Note: DESIGN Variable is undefined"
@@ -168,7 +175,7 @@ alias vlog '/tools/apps/local/mentor/questasim_10.4c_6/questasim/bin/vlog'
 
 #WorkArea Design Aliaases
 alias cdlvl 'cd /proj/gpfs/frame_tc/FRAMES/frame_tc_s8frames_dev_282/8c40010ab_frame/v/e15987z/lvl/tmp'
-alias cdtemp 'pushd .; cd $IFXCY_TEMP_PATH'
+alias cdtemp 'pushd .; cd $VJSK_TEMP_PATH'
 alias cduserdir 'cd /opt/userdir/sureshkumar'
 
 #Paths - Because I don't have to source .cshrc everytime which changes $DESIGN
@@ -180,12 +187,12 @@ set path = ( ${path} /tools/apps/ruby/bin)
 #set path = ( ${path} /proj/module_automation/golden/module_automation/perl)
 #set path = ( ${path} /proj/module_automation/golden/module_automation/html)
 #set path = ( ${path} /proj/module_automation/golden/module_automation/html/rubyFile)
-set path = ( ${path} /home/vjsk/bin)
+set path = ( ${path} ~/bin)
 set path = ( ${path} /proj/gpfs/vjsk/myscripts/bash)
 set path = ( ${path} /home/vjsk/licenses)
 set path = ( ${path} /tools/stabflow/mainline/OVERWRAPPERS)
 set path = ( ${path} /proj/gpfs/vjsk/IP/vjsk_scflow_dev_66/scflow/scripts/bin)
-
+set path = ( ${path} /home/icwhip.ivcs/sureshkumar/vjsk_scflow_dev_126/scflow/scripts/bin)
 setenv mo "/proj/module_automation/golden/module_automation"
 
 #License Alias
@@ -193,3 +200,5 @@ setenv mo "/proj/module_automation/golden/module_automation"
 #setenv LM_LICENSE_FILE /proj/lic_vault/golden/lic_vault/snpslmd-design-prod-wan/license.dat
 #setenv LM_LICENSE_FILE "/proj/lic_vault/golden/lic_vault/snpslmd-na-cwan-ifx/license.dat:/proj/lic_vault/golden/lic_vault/snpslmd-design-prod-wan/license.dat:/proj/lic_vault/golden/lic_vault/cdslmd-spsjc-prod-wan/license.dat:8224@armlmd-aus-prod-wan.licenses.cypress.com:/proj/lic_vault/golden/lic_vault/cdslmd-aus-temp-wan/license.dat"
 setenv LM_LICENSE_FILE /proj/lic_vault/golden/lic_vault/snpslmd-na-cwan-ifx/license.dat
+
+#Design Aliases

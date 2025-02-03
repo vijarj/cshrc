@@ -28,6 +28,18 @@ colorscheme ron  " ibm green screen
 "colorscheme zellner " white background red text
 
 
+autocmd BufNewFile,BufRead *.v,*.vs,*.sv,*.svh set syntax=verilog
+
+map <silent> <Leader>zz      :set                  cursorline! <CR>
+map <silent> <Leader>xx      :set   cursorcolumn!              <CR>
+map <silent> <Leader>cc      :set   cursorcolumn!  cursorline! <CR>
+map <silent> <Leader>co      :set   cursorcolumn   cursorline  <CR>
+map <silent> <Leader>cn      :set nocursorcolumn nocursorline  <CR>
+"imap <silent> <Leader>cl <Esc>:set                  cursorline! <CR>a
+"imap <silent> <Leader>cc <Esc>:set   cursorcolumn!              <CR>a
+"imap <silent> <Leader>ct <Esc>:set   cursorcolumn!  cursorline! <CR>a
+"imap <silent> <Leader>co <Esc>:set   cursorcolumn   cursorline  <CR>a
+"imap <silent> <Leader>cn <Esc>:set nocursorcolumn nocursorline  <CR>a
 
 
 
@@ -49,9 +61,9 @@ set showcmd
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
-"set cursorcolumn
-"set cursorline
-"highlight Cursorcolumn guibg=lightblue ctermbg=lightgray
+set cursorcolumn
+set cursorline
+highlight Cursorline guibg=lightyellow gui=bold guifg=black
 
 function! HasPaste()
    if &paste
@@ -64,4 +76,5 @@ endfunction
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
-
+set expandtab
+set tabstop=2
