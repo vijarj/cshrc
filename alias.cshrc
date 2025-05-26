@@ -60,6 +60,8 @@ a s	        'source ~/.cshrc'
 a sspansion 'source /tools/stabflow/spansion/cshrc.spansion'
 a edd	      'echo $DESIGN'
 a edmwa     'echo $DMWA'
+a evdd      'echo $VDDC_DIR'
+a evddc     'echo $VDDC_DIR/../$VDDC_NAME_FORTEMP/tb/fnv/run'
 a h         'history'
 a gcshrc    'gvim -c "source ~/vimrc" ~/.cshrc'
 a guserenv  'gvim -c "source ~/vimrc" ~/.userenv'
@@ -77,6 +79,7 @@ a sv        'bsub -Ip simvision -64 &'
 #icmp4 aliases
 a i         'icmp4'
 a b         'bsub -Ip'
+a idiff2    "bash -c 'gvimdiff <( icmp4 print -q \!:1 ) <( icmp4 print -q \!:2 )'"
 #Software aliases
 a g         'gvim -c "source ~/vimrc"'
 a v         'vim -c "source ~/vimrc"'
