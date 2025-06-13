@@ -111,6 +111,7 @@ set path = ( ${path} /home/vjsk/licenses)
 set path = ( ${path} /tools/stabflow/mainline/OVERWRAPPERS)
 set path = ( ${path} /proj/gpfs/vjsk/IP/vjsk_scflow_dev_66/scflow/scripts/bin)
 set path = ( ${path} /home/icwhip.ivcs/sureshkumar/vjsk_scflow_dev_126/scflow/scripts/bin)
+set path = ( ${path} /Applications/MacVim.app/Contents/bin/)
 
 #License Alias
 #hspice
