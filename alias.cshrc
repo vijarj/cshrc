@@ -17,17 +17,15 @@ set   white="%{\033[0;37m%}"
 set   orange="%{\033[1;214m%}"
 set     end="%{\033[0m%}"
 
-alias git_status 'set branch=`git branch --show-current` && set staged=`git diff --staged --numstat | wc -l | sed "s/ //g"` && set modified=`git diff --numstat | wc -l | sed "s/ //g"` && set untracked=`git ls-files --others --exclude-standard | wc -l | sed "s/ //g"` && set ahead=`git status -sb | grep -o "\[ahead [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set behind=`git status -sb | grep -o "\[behind [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set stashed=`git stash list | wc -l | sed "s/ //g"` && echo "Branch: $branch" && echo "📦 Staged: $staged" && echo "📝 Modified: $modified" && echo "❓ Untracked: $untracked" && echo "⬆️  Ahead: $ahead" && echo "⬇️  Behind: $behind" && echo "📋 Stashed: $stashed"'
 
 
+#Takes long time to do this - but here in comments for reference
+#alias get_ahead 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "@{upstream}..HEAD" || echo 0'
+#alias get_behind 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "HEAD..@{upstream}" || echo 0'
+#alias git_status_prompt 'git branch --show-current >& /dev/null && echo -n "[`git branch --show-current` : `git diff --staged --numstat | wc -l` + `git diff --numstat | wc -l` ? `git ls-files --others --exclude-standard | wc -l` | `get_ahead`↑`get_behind`↓]" || echo ""'
+#set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status_prompt` ${cyan}WW`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
 
-alias get_ahead 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "@{upstream}..HEAD" || echo 0'
-alias get_behind 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "HEAD..@{upstream}" || echo 0'
-alias git_status_prompt 'git branch --show-current >& /dev/null && echo -n "[`git branch --show-current` : `git diff --staged --numstat | wc -l` + `git diff --numstat | wc -l` ? `git ls-files --others --exclude-standard | wc -l` | `get_ahead`↑`get_behind`↓]" || echo ""'
-
-set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status_prompt` ${cyan}WW`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
-
-#set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status` ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status` ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
 unset red green yellow blue magenta cyan yellow white end
 
 
@@ -41,6 +39,7 @@ unalias vim
 # Aliases
 alias a alias
 #############
+a gs 'set branch=`git branch --show-current` && set staged=`git diff --staged --numstat | wc -l | sed "s/ //g"` && set modified=`git diff --numstat | wc -l | sed "s/ //g"` && set untracked=`git ls-files --others --exclude-standard | wc -l | sed "s/ //g"` && set ahead=`git status -sb | grep -o "\[ahead [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set behind=`git status -sb | grep -o "\[behind [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set stashed=`git stash list | wc -l | sed "s/ //g"` && echo "Branch: $branch" && echo "📦 Staged: $staged" && echo "📝 Modified: $modified" && echo "❓ Untracked: $untracked" && echo "⬆️  Ahead: $ahead" && echo "⬇️  Behind: $behind" && echo "📋 Stashed: $stashed"'
 a sdd       'setenv DESIGN $PWD; setenv DMWA $PWD;source $DESIGN/config/cydir/bin/MASTER_CSHRC; echo "PCIOS is: "; readlink $DESIGN/config/pcios; echo "Tech is: " ;readlink $DESIGN/config/tech' 
 a vdd       'setenv VMS_DDC_TOP $PWD; setenv VDDC $PWD'
 a URs       'echo "\-U\n\-R\n\-s" | xargs -n 1 -Iopts pm workspace opts `basename $PWD` | grep -v -e "up\-to\-date"'
