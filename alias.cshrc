@@ -16,8 +16,23 @@ set    cyan="%{\033[1;36m%}"
 set   white="%{\033[0;37m%}"
 set   orange="%{\033[1;214m%}"
 set     end="%{\033[0m%}"
-set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`domainname` ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+
+alias git_status 'set branch=`git branch --show-current` && set staged=`git diff --staged --numstat | wc -l | sed "s/ //g"` && set modified=`git diff --numstat | wc -l | sed "s/ //g"` && set untracked=`git ls-files --others --exclude-standard | wc -l | sed "s/ //g"` && set ahead=`git status -sb | grep -o "\[ahead [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set behind=`git status -sb | grep -o "\[behind [0-9]*\]" | grep -o "[0-9]*" || echo "0"` && set stashed=`git stash list | wc -l | sed "s/ //g"` && echo "Branch: $branch" && echo "📦 Staged: $staged" && echo "📝 Modified: $modified" && echo "❓ Untracked: $untracked" && echo "⬆️  Ahead: $ahead" && echo "⬇️  Behind: $behind" && echo "📋 Stashed: $stashed"'
+
+
+
+alias get_ahead 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "@{upstream}..HEAD" || echo 0'
+alias get_behind 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "HEAD..@{upstream}" || echo 0'
+alias git_status_prompt 'git branch --show-current >& /dev/null && echo -n "[`git branch --show-current` : `git diff --staged --numstat | wc -l` + `git diff --numstat | wc -l` ? `git ls-files --others --exclude-standard | wc -l` | `get_ahead`↑`get_behind`↓]" || echo ""'
+
+set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status_prompt` ${cyan}WW`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+
+#set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status` ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
 unset red green yellow blue magenta cyan yellow white end
+
+
+
+
 
 #ENV variables -To display directories in color
 setenv LS_COLORS "di=103;34:fi=00"
