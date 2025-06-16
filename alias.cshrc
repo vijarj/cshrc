@@ -24,8 +24,10 @@ set     end="%{\033[0m%}"
 #alias get_behind 'git rev-parse @{upstream} >& /dev/null && git rev-list --count "HEAD..@{upstream}" || echo 0'
 #alias git_status_prompt 'git branch --show-current >& /dev/null && echo -n "[`git branch --show-current` : `git diff --staged --numstat | wc -l` + `git diff --numstat | wc -l` ? `git ls-files --others --exclude-standard | wc -l` | `get_ahead`↑`get_behind`↓]" || echo ""'
 #set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status_prompt` ${cyan}WW`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+alias git_current_branch 'git rev-parse --abbrev-ref HEAD >& /dev/null && echo "{`git rev-parse --abbrev-ref HEAD`}"'
 
-set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow}`git_status` ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow} `git_current_branch`  ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+
 unset red green yellow blue magenta cyan yellow white end
 
 
