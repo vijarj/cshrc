@@ -54,6 +54,14 @@ map <silent> <Leader>cn      :set nocursorcolumn nocursorline  <CR>
 "imap <silent> <Leader>co <Esc>:set   cursorcolumn   cursorline  <CR>a
 "imap <silent> <Leader>cn <Esc>:set nocursorcolumn nocursorline  <CR>a
 
+" For normal and visual mode
+nnoremap <C-S-c> "+y
+vnoremap <C-S-c> "+y
+
+" For insert and command mode
+inoremap <C-S-v> <C-r>+
+cnoremap <C-S-v> <C-r>+
+
 
 
 " => Visual mode related

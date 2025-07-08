@@ -1,5 +1,3 @@
-#vjsk
-setenv P4USER vjsk
 #Terminal setup
 set autolist
 set autocorrect
@@ -82,10 +80,6 @@ a du	      'du -sh --apparent-size'
 a duc	      'du -shc --apparent-size'
 a cpuinfo   'cat /proc/cpuinfo'
 a sv        'bsub -Ip simvision -64 &'
-#icmp4 aliases
-a i         'icmp4'
-a b         'bsub -Ip'
-a idiff2    "bash -c 'gvimdiff <( icmp4 print -q \!:1 ) <( icmp4 print -q \!:2 )'"
 #Software aliases
 a g         'gvim -c "source ~/vimrc"'
 a v         'vim -c "source ~/vimrc"'
@@ -112,14 +106,7 @@ a stt       'echo -n "\033]0;`pwd | cut -d'/' -f6`\007"'
 
 #Paths - Because I don't have to source .cshrc everytime which changes $DESIGN
 set path = ( ${path} ~/bin ~/scripts )
-set path = ( ${path} /proj/destools/golden/destools/cad/bin)
-set path = ( ${path} /tools/apps/ruby/bin)
-set path = ( ${path} ~/bin)
-set path = ( ${path} /proj/gpfs/vjsk/myscripts/bash)
-set path = ( ${path} /home/vjsk/licenses)
-set path = ( ${path} /tools/stabflow/mainline/OVERWRAPPERS)
-set path = ( ${path} /proj/gpfs/vjsk/IP/vjsk_scflow_dev_66/scflow/scripts/bin)
-set path = ( ${path} /home/icwhip.ivcs/sureshkumar/vjsk_scflow_dev_126/scflow/scripts/bin)
+set path = ( ${path} /Applications/MacVim.app/Contents/bin )
 
 #GIT aliases
 #Just use git graph - will display date and who made commits
