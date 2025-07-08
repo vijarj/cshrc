@@ -1,32 +1,3 @@
-# .bashrc
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
-fi
-
-unset rc
-
-
 # Terminal setup
 # Note: bash has different command completion settings
 bind 'set show-all-if-ambiguous on'
@@ -101,9 +72,6 @@ alias evdd='echo $VDDC_DIR'
 alias evddc='echo $VDDC_DIR/../$VDDC_NAME_FORTEMP/tb/fnv/run'
 alias h='history'
 
-# ... continue with remaining aliases following the same pattern ...
-
 # Path additions
 PATH=$PATH:~/bin:~/scripts
-PATH=$PATH:/ho***********v***********mar/vjsk_scflow_dev_126/scflow/scripts/bin
 export PATH
