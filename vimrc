@@ -11,14 +11,16 @@ set wrap
 
 
 " Enable filetype detection, plugins, and indentation
-filetype on
-filetype plugin on
-filetype indent on
+"filetype on
+"filetype plugin on
+"filetype indent on
 
 " Set Verilog filetype for specific extensions
+" This needs to be in ~/.vimrc - so create a link for the the below things to
+" work
 augroup verilog_ft
   autocmd!
-  autocmd BufRead,BufNewFile *.v,*.vh,*.sv,*.svh set filetype=verilog
+  autocmd BufNewFile,BufRead *.v,*.vh,*.sv,*.svh set filetype=verilog
 augroup END
 
 " => Colors and Fonts
@@ -90,3 +92,17 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 set tabstop=2 shiftwidth=2
 set expandtab
 
+"Press \ and vv to toggle spaces as red errors
+let g:space_highlight = 0
+function! ToggleSpaceHighlight()
+    if !g:space_highlight
+        match Error /\s/
+        let g:space_highlight = 1
+        echo "Space highlighting ON"
+    else
+        match none
+        let g:space_highlight = 0
+        echo "Space highlighting OFF"
+    endif
+endfunction
+nnoremap vv :call ToggleSpaceHighlight()<CR>
