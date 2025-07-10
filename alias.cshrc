@@ -16,7 +16,9 @@ set   orange="%{\033[1;214m%}"
 set     end="%{\033[0m%}"
 alias git_current_branch 'git rev-parse --abbrev-ref HEAD >& /dev/null && echo "{`git rev-parse --abbrev-ref HEAD`}"'
 
-set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow} `git_current_branch`  ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+#set prompt="${yellow}%S%h%s ${cyan}%T ${green}%U%n${blue}@%M%u ${yellow} `git_current_branch`  ${cyan}"WW"`date +%V` ${magenta}`date +%D`\n${red}%B%/%b \n${green}%#${white} ${end}"
+alias precmd 'set prompt="%{\033[1;33m%}%S%h%s %{\033[1;36m%}%T %{\033[0;32m%}%U%n%{\033[1;34m%}@%M%u %{\033[1;33m%}`git_current_branch`  %{\033[1;36m%}WW`date +%V` %{\033[1;35m%}`date +%D`\n%{\033[1;31m%}%B%/%b \n%{\033[0;32m%}%#%{\033[0;37m%} %{\033[0m%}"'
+
 
 
 unset red green yellow blue magenta cyan yellow white end
@@ -103,6 +105,8 @@ a cduserdir 'cd /opt/userdir/sureshkumar'
 a bverdi    'bsub -XF -I -q vcsruntime -R "rusage[mem=4GB]" verdi -base -ssf'
 a bbsub     'bsub -XF -I -q vcsruntime -R "rusage[mem=4GB]"'
 a stt       'echo -n "\033]0;`pwd | cut -d'/' -f6`\007"'
+a str       'echo -n "\033]0;results\007"'
+a cdl       'cd `ls -dt */ | head -n1`'
 
 #Paths - Because I don't have to source .cshrc everytime which changes $DESIGN
 set path = ( ${path} ~/bin ~/scripts )
